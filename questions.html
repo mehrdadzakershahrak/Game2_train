@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div style="padding:50px">
+        <h1>Questionnaire:</h1>
+        <div style="width:1000px;margin-top:15%;margin-left:auto;margin-right:auto">
+            <form>
+                <fieldset id='1'>
+                    <label>How much did the robot contribute to team effectiveness in general?</label>
+                    <div style="float:right;padding-right:50px">
+                        <input type="radio" value="1" name="q1">1
+                        <input type="radio" value="2" name="q1">2
+                        <input type="radio" value="3" name="q1">3
+                        <input type="radio" value="4" name="q1">4
+                        <input type="radio" value="5" name="q1">5
+                        <input type="radio" value="6" name="q1">6
+                        <input type="radio" value="7" name="q1">7
+                        <input type="radio" value="8" name="q1">8
+                        <input type="radio" value="9" name="q1">9
+                        <input type="radio" value="10" name="q1">10
+                    </div>
+                </fieldset>
+                <fieldset id='2'>
+                    <label>How much did you contribute to team effectiveness in general?</label>
+                    <div style="float:right;padding-right:50px">
+                        <input type="radio" value="1" name="q2">1
+                        <input type="radio" value="2" name="q2">2
+                        <input type="radio" value="3" name="q2">3
+                        <input type="radio" value="4" name="q2">4
+                        <input type="radio" value="5" name="q2">5
+                        <input type="radio" value="6" name="q2">6
+                        <input type="radio" value="7" name="q2">7
+                        <input type="radio" value="8" name="q2">8
+                        <input type="radio" value="9" name="q2">9
+                        <input type="radio" value="10" name="q2">10
+                    </div>
+                </fieldset>
+                <fieldset id='3'>
+                    <label>How much do you like to collaborate with the robot again?</label>
+                    <div style="float:right;padding-right:50px">
+                        <input type="radio" value="1" name="q3">1
+                        <input type="radio" value="2" name="q3">2
+                        <input type="radio" value="3" name="q3">3
+                        <input type="radio" value="4" name="q3">4
+                        <input type="radio" value="5" name="q3">5
+                        <input type="radio" value="6" name="q3">6
+                        <input type="radio" value="7" name="q3">7
+                        <input type="radio" value="8" name="q3">8
+                        <input type="radio" value="9" name="q3">9
+                        <input type="radio" value="10" name="q3">10
+                    </div>
+                </fieldset>
+                <br>
+                <button type="submit" id="submit">Submit</button>
+            </form>
+            <p id="uuid"> </p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $('form').submit(e => {
+            e.preventDefault();
+            $.post('/questions', {id: sessionStorage.getItem('explainabilityUUID'), answers: $('form').serializeArray()}, res => {
+                console.log(res);
+                $("#uuid").text(`Thanks for collaborating with the Robot! Here is your code: ${sessionStorage.getItem('explainabilityUUID')}`);
+                $("#submit").attr('disabled', 'disabled');
+            });
+            console.log($('form').serializeArray());
+        });
+    </script>
+</body>

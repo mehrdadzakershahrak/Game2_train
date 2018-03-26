@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+        </script>
+    <script type="text/javascript">
+        // Author: Mehrdad Zakershahrak
+        var ctx = null;
+        var maps = [{
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 0, 1, 1, 1, 1, 0,
+                0, 1, 0, 0, 2, 4, 0, 0, 1, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 1, 0, 1, 1, 1, 1, 1, 1, 0,
+                0, 1, 1, 1, 4, 1, 1, 0, 0, 0,
+                0, 1, 1, 1, 3, 1, 1, 2, 1, 0,
+                0, 1, 1, 1, 3, 0, 0, 1, 1, 0,
+                0, 1, 1, 0, 2, 1, 1, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [45, 45]
+        },
+        {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 2, 0,
+                0, 4, 4, 4, 4, 4, 1, 1, 1, 0,
+                0, 1, 2, 1, 1, 4, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 4, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 4, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 0, 3, 0, 3, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 1, 2, 0, 1, 1, 2, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [45, 45]
+        },
+        {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 0, 0, 1, 2, 1, 1, 1, 1, 0,
+                0, 1, 1, 4, 4, 4, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 1, 4, 1, 2, 0,
+                0, 1, 0, 1, 2, 1, 4, 1, 1, 0,
+                0, 1, 1, 1, 1, 1, 4, 1, 1, 0,
+                0, 2, 1, 3, 3, 1, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [45, 45]
+        },
+        {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 4, 1, 1, 1, 0,
+                0, 0, 3, 0, 1, 1, 4, 4, 4, 0,
+                0, 1, 2, 1, 1, 1, 1, 1, 2, 0,
+                0, 1, 1, 1, 0, 1, 1, 1, 1, 0,
+                0, 4, 4, 4, 4, 4, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 3, 1, 1, 2, 0,
+                0, 2, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [325, 45]
+        },
+        {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 4, 1, 1, 2, 4, 1, 0,
+                0, 2, 1, 4, 1, 1, 1, 4, 1, 0,
+                0, 1, 1, 4, 1, 1, 1, 1, 1, 0,
+                0, 0, 3, 4, 1, 1, 0, 1, 2, 0,
+                0, 1, 1, 1, 1, 1, 3, 1, 1, 0,
+                0, 1, 2, 1, 1, 1, 0, 1, 1, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 1, 3, 0, 3, 0, 3, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [325, 45]
+        },
+        {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 2, 1, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 3, 1, 1, 0, 0,
+                0, 1, 2, 1, 3, 0, 1, 1, 2, 0,
+                0, 1, 1, 4, 4, 4, 1, 1, 1, 0,
+                0, 1, 0, 4, 1, 1, 1, 0, 1, 0,
+                0, 1, 1, 4, 2, 1, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 1, 4, 4, 4, 0,
+                0, 1, 0, 1, 1, 1, 1, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [325, 325]
+        },
+        {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 2, 1, 3, 1, 0,
+                0, 1, 1, 4, 1, 1, 1, 0, 1, 0,
+                0, 2, 4, 4, 4, 1, 3, 0, 3, 0,
+                0, 1, 1, 4, 1, 1, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 3, 1, 1, 1, 4, 4, 4, 1, 0,
+                0, 0, 0, 1, 2, 1, 2, 4, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [325, 325]
+        },
+        {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 4, 2, 1, 4, 1, 1, 1, 0,
+                0, 1, 4, 4, 4, 1, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 1, 4, 1, 1, 0,
+                0, 1, 1, 1, 3, 4, 4, 4, 2, 0,
+                0, 1, 0, 1, 3, 0, 4, 1, 1, 0,
+                0, 1, 3, 1, 2, 1, 1, 3, 0, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 1, 0, 1, 1, 1, 1, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [45, 45]
+        }, {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 4, 1, 1, 1, 0,
+                0, 4, 4, 4, 4, 1, 1, 2, 1, 0,
+                0, 1, 2, 1, 4, 1, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 3, 0,
+                0, 0, 1, 1, 4, 0, 0, 4, 4, 0,
+                0, 1, 3, 1, 1, 1, 1, 1, 0, 0,
+                0, 2, 3, 0, 1, 1, 2, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [45, 45]
+        },
+        {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 2, 0,
+                0, 1, 0, 0, 1, 1, 1, 1, 1, 0,
+                0, 0, 1, 1, 1, 1, 4, 1, 1, 0,
+                0, 1, 2, 3, 1, 1, 4, 1, 1, 0,
+                0, 1, 1, 3, 1, 1, 4, 1, 0, 0,
+                0, 0, 1, 4, 1, 1, 4, 1, 0, 0,
+                0, 1, 1, 4, 1, 1, 4, 2, 1, 0,
+                0, 1, 1, 4, 2, 1, 4, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [45, 325]
+        },
+        {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 1, 3, 0, 0, 1, 1, 1, 0,
+                0, 2, 1, 1, 1, 1, 1, 3, 1, 0,
+                0, 4, 4, 4, 1, 1, 1, 1, 2, 0,
+                0, 0, 3, 1, 1, 4, 4, 4, 4, 0,
+                0, 2, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 4, 4, 4, 4, 4, 1, 3, 0, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 2, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [45, 325]
+        },
+        {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 0, 2, 4, 1, 1, 1, 0,
+                0, 0, 3, 3, 3, 4, 1, 1, 1, 0,
+                0, 2, 1, 1, 1, 4, 1, 4, 4, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 2, 0,
+                0, 1, 1, 4, 4, 4, 1, 1, 1, 0,
+                0, 1, 3, 2, 0, 4, 0, 1, 1, 0,
+                0, 1, 1, 1, 0, 4, 0, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [325, 45]
+        },
+        {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 0, 2, 4, 1, 1, 1, 0,
+                0, 0, 3, 3, 3, 4, 1, 1, 1, 0,
+                0, 2, 1, 1, 1, 4, 1, 4, 4, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 2, 0,
+                0, 1, 1, 4, 4, 4, 1, 1, 1, 0,
+                0, 1, 3, 2, 0, 4, 0, 1, 1, 0,
+                0, 1, 1, 1, 0, 4, 0, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [325, 45]
+        },
+        {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 2, 3, 1, 1, 1, 0,
+                0, 1, 1, 1, 1, 4, 1, 1, 1, 0,
+                0, 0, 1, 1, 1, 1, 4, 4, 4, 0,
+                0, 0, 0, 1, 1, 1, 1, 1, 3, 0,
+                0, 1, 2, 1, 1, 1, 1, 3, 2, 0,
+                0, 4, 3, 4, 1, 1, 1, 1, 0, 0,
+                0, 1, 4, 1, 1, 1, 0, 1, 1, 0,
+                0, 1, 1, 1, 3, 2, 0, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [45, 325]
+        },
+        {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 3, 0, 1, 1, 3, 0,
+                0, 1, 1, 1, 1, 1, 1, 2, 1, 0,
+                0, 2, 3, 1, 1, 1, 1, 1, 1, 0,
+                0, 3, 4, 1, 1, 3, 4, 1, 1, 0,
+                0, 0, 1, 1, 1, 2, 4, 1, 0, 0,
+                0, 0, 1, 1, 4, 4, 4, 1, 1, 0,
+                0, 1, 1, 1, 4, 2, 1, 1, 1, 0,
+                0, 1, 1, 1, 0, 1, 1, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [45, 325]
+        },
+        {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 3, 0, 1, 1, 3, 0,
+                0, 1, 1, 1, 1, 1, 1, 2, 1, 0,
+                0, 2, 3, 1, 1, 1, 1, 1, 1, 0,
+                0, 3, 4, 1, 1, 3, 4, 1, 1, 0,
+                0, 0, 1, 1, 1, 2, 4, 1, 0, 0,
+                0, 0, 1, 1, 4, 4, 4, 1, 1, 0,
+                0, 1, 1, 1, 4, 2, 1, 1, 1, 0,
+                0, 1, 1, 1, 0, 1, 1, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [45, 45]
+        },
+        {
+            gameMap: [
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 1, 1, 1, 1, 2, 0,
+                0, 4, 1, 1, 4, 3, 4, 1, 1, 0,
+                0, 0, 4, 4, 0, 4, 1, 1, 4, 0,
+                0, 1, 3, 2, 1, 1, 1, 4, 0, 0,
+                0, 1, 1, 1, 1, 1, 1, 4, 2, 0,
+                0, 0, 0, 1, 1, 1, 4, 3, 1, 0,
+                0, 0, 1, 1, 1, 1, 1, 1, 1, 0,
+                0, 1, 1, 3, 2, 1, 1, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            ], start: [45, 45]
+        }];
+        var tileW = 40, tileH = 40;
+        var mapW = 10, mapH = 10;
+        var currentSecond = 0, frameCount = 0, framesLastSecond = 0;
+        var lastFrameTime = 0;
+        var finished = false;
+        var tileset = null, tilesetURL = "tileset.png", tilesetLoaded = false;
+
+        var floorTypes = {
+            solid: 0,
+            path: 1,
+            room: 2,
+            box: 3,
+            hidden: 4
+        };
+        var keysDown = {
+            37: false,
+            38: false,
+            39: false,
+            40: false
+        };
+
+        var tileTypes = {
+            0: { colour: "#685b48", floor: floorTypes.solid, sprite: [{ x: 0, y: 0, w: 40, h: 40 }] },
+            1: { colour: "#5aa457", floor: floorTypes.path, sprite: [{ x: 80, y: 0, w: 40, h: 40 }] },
+            2: { colour: "#e8bd7a", floor: floorTypes.path, sprite: [{ x: 120, y: 0, w: 40, h: 40 }] },
+            3: { colour: "#286625", floor: floorTypes.path, sprite: [{ x: 160, y: 0, w: 40, h: 40 }] },
+            4: { colour: "#685b48", floor: floorTypes.solid, sprite: [{ x: 80, y: 0, w: 40, h: 40 }] }
+        };
+
+        var directions = {
+            up: 0,
+            right: 1,
+            down: 2,
+            left: 3
+        };
+
+        function setMap(id) {
+            const map = maps[id];
+            mapId = id;
+            player.position = map.start;
+            player.tileFrom = map.start.map(px => Math.floor(px / 40.0));
+            player.tileTo = map.start.map(px => Math.floor(px / 40.0));
+            return map.gameMap;
+        }
+
+        var player = new Character();
+
+        var mapId;
+        var gameMap = setMap(Math.floor(Math.random() * maps.length));
+
+        function Character() {
+            this.tileFrom = [1, 1];
+            this.tileTo = [1, 1];
+            this.timeMoved = 0;
+            this.dimensions = [30, 30];
+            this.position = [45, 45];
+            this.delayMove = 700;
+            this.direction = directions.up;
+
+            this.sprites = {};
+            this.sprites[directions.up] = [{ x: 0, y: 120, w: 30, h: 30 }];
+            this.sprites[directions.right] = [{ x: 0, y: 150, w: 30, h: 30 }];
+            this.sprites[directions.down] = [{ x: 0, y: 180, w: 30, h: 30 }];
+            this.sprites[directions.left] = [{ x: 0, y: 210, w: 30, h: 30 }];
+
+            this.target = null;
+            this.moving = false;
+            this.plan = [];
+            this.lastMove = null;
+            this.setGoal = false;
+            this.stack = [];
+        }
+        Character.prototype.placeAt = function (x, y) {
+            this.tileFrom = [x, y];
+            this.tileTo = [x, y];
+            this.position = [((tileW * x) + ((tileW - this.dimensions[0]) / 2)),
+            ((tileH * y) + ((tileH - this.dimensions[1]) / 2))];
+        };
+
+        Character.prototype.processMovement = function (t) {
+            if (this.tileFrom[0] == this.tileTo[0] &&
+                this.tileFrom[1] == this.tileTo[1]) { return false; }
+
+
+            if ((t - this.timeMoved) >= this.delayMove) {
+                this.placeAt(this.tileTo[0], this.tileTo[1]);
+            }
+
+            else {
+                this.position[0] = (this.tileFrom[0] * tileW) + ((tileW - this.dimensions[0]) / 2);
+                this.position[1] = (this.tileFrom[1] * tileH) + ((tileH - this.dimensions[1]) / 2);
+
+                if (this.tileTo[0] != this.tileFrom[0]) {
+                    var diff = (tileW / this.delayMove) * (t - this.timeMoved);
+                    this.position[0] += (this.tileTo[0] < this.tileFrom[0] ? 0 - diff : diff);
+                }
+
+                if (this.tileTo[1] != this.tileFrom[1]) {
+                    var diff = (tileH / this.delayMove) * (t - this.timeMoved);
+                    this.position[1] += (this.tileTo[1] < this.tileFrom[1] ? 0 - diff : diff);
+                }
+
+                this.position[0] = Math.round(this.position[0]);
+                this.position[1] = Math.round(this.position[1]);
+            }
+
+            return true;
+        };
+
+        Character.prototype.canMoveTo = function (x, y) {
+            if (x < 0 || x >= mapW || y < 0 || y >= mapH) { return false; }
+            if (tileTypes[gameMap[toIndex(x, y)]].floor != floorTypes.path) { return false; }
+            return true;
+        };
+
+        Character.prototype.moveEligible = function (x, y) {
+            return getTileType(x, y) == 2;
+        };
+
+        Character.prototype.resetTarget = function () {
+            this.target = null;
+            this.lastMove = null;
+            this.pending = null;
+        }
+
+        Character.prototype.canMoveUp = function () { return this.canMoveTo(this.tileFrom[0], this.tileFrom[1] - 1); };
+        Character.prototype.canMoveDown = function () { return this.canMoveTo(this.tileFrom[0], this.tileFrom[1] + 1); };
+        Character.prototype.canMoveLeft = function () { return this.canMoveTo(this.tileFrom[0] - 1, this.tileFrom[1]); };
+        Character.prototype.canMoveRight = function () { return this.canMoveTo(this.tileFrom[0] + 1, this.tileFrom[1]); };
+
+        Character.prototype.moveLeft = function (t) { this.tileTo[0] -= 1; this.timeMoved = t; this.direction = directions.left; this.lastMove = 'left'; };
+        Character.prototype.moveRight = function (t) { this.tileTo[0] += 1; this.timeMoved = t; this.direction = directions.right; this.lastMove = 'right'; };
+        Character.prototype.moveUp = function (t) { this.tileTo[1] -= 1; this.timeMoved = t; this.direction = directions.up; this.lastMove = 'up'; };
+        Character.prototype.moveDown = function (t) { this.tileTo[1] += 1; this.timeMoved = t; this.direction = directions.down; this.lastMove = 'down'; };
+        Character.prototype.execMove = function (x, y, direction) {
+            switch (direction) {
+                case "up":
+                    return this.moveUp(Date.now());
+                case "down":
+                    return this.moveDown(Date.now());
+                case "right":
+                    return this.moveRight(Date.now());
+                case "left":
+                    return this.moveLeft(Date.now());
+            }
+        };
+
+        Character.prototype.moveToLocation = function () {
+            if (!!this.target && this.moveEligible(this.target.x, this.target.y)) {
+                var playerX = Math.floor(this.position[0] / 40.0);
+                var playerY = Math.floor(this.position[1] / 40.0);
+                if (getTileType(playerX, playerY) == 2 && playerX == this.target.x && playerY == this.target.y) {
+                    gameMap[playerX + playerY * 10] = 1;
+                    this.plan.push({ Action: `Room-visited`, explain: true, time: 0 });
+                    if (isAllVisited(gameMap)) {
+                        finished = true;
+                        $.post("/game", { path: this.plan, mapId: mapId }, data => {
+                            sessionStorage.setItem('explainabilityUUID', data);
+                            window.location.href = '/questions';
+                        });
+                    }
+                    else {
+                        this.confirmNewTarget();
+                    }
+                    return this.resetTarget();
+                }
+                if (getTileType(playerX, playerY) == 3) {
+                    gameMap[playerX + playerY * 10] = 1;
+                }
+                const move = this.stack.pop();
+                if (move) {
+                    this.execMove(playerX, playerY, move);
+                }
+                else {
+                    this.resetTarget();
+                }
+            } else {
+                this.resetTarget();
+            }
+        };
+
+        Character.prototype.confirmLastMove = function () {
+            if (this.lastMove) {
+                const conf = confirmAction(this.lastMove.charAt(0).toUpperCase() + this.lastMove.slice(1));
+                this.plan.push({ Action: this.lastMove, explain: conf, time: this.delayMove });
+                if (!conf) {
+                    this.confirmNewTarget();
+                }
+            }
+        }
+
+        Character.prototype.confirmNewTarget = function () {
+            if (confirm('Do you want to change the robot\'s target?')) {
+                this.resetTarget();
+                this.setGoal = true;
+            }
+        }
+
+        Character.prototype.getPlanSize = function () {
+            return this.plan.length;
+        }
+
+        function toIndex(x, y) {
+            return ((y * mapW) + x);
+        }
+
+        function getTileType(x, y) {
+            return gameMap[x + y * 10];
+        }
+
+        function confirmAction(action) {
+            return confirm(`Do you think the robot is doing the right thing?`);
+        }
+
+        function isAllVisited() {
+            return !gameMap.filter(tile => tile == 2).length;
+        }
+
+        function BFS_new(v) {
+            const s = [];
+            const seen = new Set();
+            s.push({ index: v, move: null, parent: null });
+            while (s.length) {
+                v = s.pop();
+                seen.add(v.index);
+                if (gameMap[v.index] == 2) {
+                    return v;
+                }
+                adjacentEdges(v.index).forEach(e => seen.has(e.index) ? null : s.unshift({ index: e.index, move: e.move, parent: v }));
+            }
+        }
+
+        function BFS(target, v) {
+            const s = [];
+            const seen = new Set();
+            s.push({ index: v, move: null, parent: null });
+            while (s.length) {
+                v = s.pop();
+                seen.add(v.index);
+                if (v.index == target) {
+                    return v;
+                }
+                adjacentEdges(v.index).forEach(e => seen.has(e.index) ? null : s.unshift({ index: e.index, move: e.move, parent: v }));
+            }
+        }
+
+        function adjacentEdges(v) {
+            const tiles = [];
+            if (v - 1 >= 0 && tileTypes[gameMap[v - 1]].floor == floorTypes.path) tiles.push({ index: v - 1, move: 'left' });
+            if (v % 10 < (v + 1) % 10 && tileTypes[gameMap[v + 1]].floor == floorTypes.path) tiles.push({ index: v + 1, move: 'right' });
+            if (v - 10 >= 0 && tileTypes[gameMap[v - 10]].floor == floorTypes.path) tiles.push({ index: v - 10, move: 'up' });
+            if (v + 10 < 100 && tileTypes[gameMap[v + 10]].floor == floorTypes.path) tiles.push({ index: v + 10, move: 'down' });
+            return tiles;
+        }
+
+        window.onload = function () {
+            ctx = document.getElementById('game').getContext("2d");
+            requestAnimationFrame(drawGame);
+            ctx.font = "bold 10pt sans-serif";
+
+            $('#game').click(function (e) {
+                if (!player.target) {
+                    var offset = $('#game').offset();
+                    player.target = {
+                        x: Math.floor((e.clientX - offset.left) / 40.0),
+                        y: Math.floor((e.clientY - offset.top) / 40.0)
+                    };
+                    player.plan.push({ Action: `Human-Clicked (${player.target.x},${player.target.y})`, explain: true });
+                    let search = BFS(player.target.x + player.target.y * 10, Math.floor(player.position[0] / 40.0) + Math.floor(player.position[1] / 40.0) * 10);
+                    const path = [];
+                    while (!!search && search.parent != null) {
+                        path.push(search.move);
+                        search = search.parent;
+                    }
+                    player.setGoal = false;
+                    player.delayMove = 500;
+                    player.stack = path;
+                }
+            });
+            tileset = new Image();
+
+            tileset.onerror = function () {
+                ctx = null;
+                alert("Failed loading tileset.");
+            };
+
+            tileset.onload = function () { tilesetLoaded = true; };
+
+            tileset.src = tilesetURL;
+
+        };
+
+        function drawGame() {
+            if (ctx == null) { return; }
+            if (!tilesetLoaded) { requestAnimationFrame(drawGame); return; }
+
+            var currentFrameTime = Date.now();
+            var timeElapsed = currentFrameTime - lastFrameTime;
+
+            var sec = Math.floor(Date.now() / 1000);
+            if (sec != currentSecond) {
+                currentSecond = sec;
+                framesLastSecond = frameCount;
+                frameCount = 1;
+            }
+            else { frameCount++; }
+
+            player.moving = player.processMovement(currentFrameTime);
+            if (!player.moving) {
+                if (player.target) {
+                    player.confirmLastMove();
+                    player.moveToLocation();
+                }
+                else if (!player.setGoal && !finished) {
+                    var calculatedGoal = BFS_new(Math.floor(player.position[0] / 40.0) + Math.floor(player.position[1] / 40.0) * 10);
+                    var path = [];
+                    player.target = { x: calculatedGoal.index % 10, y: Math.floor(calculatedGoal.index / 10) };
+                    while (!!calculatedGoal && calculatedGoal.parent != null) {
+                        path.push(calculatedGoal.move);
+                        calculatedGoal = calculatedGoal.parent;
+                    }
+                    player.stack = path;
+                    player.delayMove = 700;
+                }
+            }
+
+
+            ctx.fillStyle = "#000000";
+
+            for (var y = 0; y < mapH; ++y) {
+                for (var x = 0; x < mapW; ++x) {
+                    var tile = tileTypes[gameMap[toIndex(x, y)]];
+                    ctx.drawImage(tileset,
+                        tile.sprite[0].x, tile.sprite[0].y,
+                        tile.sprite[0].w, tile.sprite[0].h,
+                        (x * tileW),
+                        (y * tileH),
+                        tileW, tileH);
+                }
+            }
+
+            var sprite = player.sprites[player.direction];
+            ctx.drawImage(tileset, sprite[0].x, sprite[0].y, sprite[0].w, sprite[0].h,
+                player.position[0],
+                player.position[1],
+                player.dimensions[0], player.dimensions[1]);
+
+            ctx.fillStyle = "#ff0000";
+            ctx.fillText("FPS: " + framesLastSecond, 10, 20);
+
+            lastFrameTime = currentFrameTime;
+            requestAnimationFrame(drawGame);
+        }
+    </script>
+
+</head>
+
+<body>
+    <canvas id="game" width="400" height="400"></canvas>
+</body>
+
+</html>

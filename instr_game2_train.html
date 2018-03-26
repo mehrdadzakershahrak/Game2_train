@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <font color="red" size="6">Instructions:</font>
+    <p style="width:75%;margin-left:auto;margin-right:auto">You are assigned to a first-response task after a disaster occurred with a robot teammate.</p>
+    <p style="width:75%;margin-left:auto;margin-right:auto">You have access to the floor plan BEFORE the disaster but it may have changed due to damage incurred by the disaster.
+        For example, some paths may be blocked and only your robot teammate that is working on the scene can sense these
+        changes. So be aware. </p>
+    <p style="width:75%;margin-left:auto;margin-right:auto"> In this scenario, your task is to team up with a remote robot that is working on the disaster scene. The team goal is
+        to search all the marked locations AS FAST AS POSSIBLE and your role is to help the robot by providing high-level
+        guidance about what the next marked location to visit. </p>
+    <p style="width:75%;margin-left:auto;margin-right:auto"> To provide your high-level guidance to the robot, click on a room marked with
+        <img src="marked.jpg"> that is unvisited. This informs the robot that is the next room that you think it should visit. </p>
+
+    <p style="width:75%;margin-left:auto;margin-right:auto"> After each move, the system asks you a question regarding to action the robot about to perform: </p>
+    <br>
+    <img src="question.jpg" style="display:block;width:400x;height:120px; margin:auto">
+
+
+
+    <p style="width:75%;margin-left:auto;margin-right:auto"> If you answer positive, you can change the robot's target. Then the robot will continue moving until visiting the room
+        (target) system continues asking you questions until the robot gets to the ordered location. </p>
+    <p style="width:75%;margin-left:auto;margin-right:auto"> Continue ordering robot to move to rooms until all marked locations are visited. </p>
+    <p style="width:75%;margin-left:auto;margin-right:auto"> You can change your command if you think that the robot is not performing the appropriate action.</p>
+    <br>
+    <p style="width:75%;margin-left:auto;margin-right:auto"> Below you can see a sample map with a key for tile types. </p>
+    <img src="map.jpg" style="display:block;width:1200x;height:360px; margin:auto">
+
+    <p style="width:75%;margin-left:auto;margin-right:auto"> Your team performance will be measured in virtue of time and how efficient you give your preference the robot to move.
+        If you give high level order to the robot, it will move 10% faster than its normal speed. </p>
+
+    <br><br>
+    <button type="button" style="display:block;padding:20px;height:100px; margin:auto">Start Game</button>
+
+    <script type='text/javascript'>
+        $('button').click(_ => window.location.href = '/game');
+    </script>
+
+
+</body>
+
+</html>
