@@ -391,7 +391,7 @@
         }
 
         Character.prototype.confirmNewTarget = function () {
-            if (confirm('Do you want to change the robot\'s target?')) {
+            if (confirm('1. Do you want to CHANGE the robot\'s target?')) {
                 this.resetTarget();
                 this.setGoal = true;
             }
@@ -410,7 +410,7 @@
         }
 
         function confirmAction(action) {
-            return confirm(`Do you think the robot is doing the right thing?`);
+            return confirm(`2. Do you think the robot is doing the RIGHT thing?`);
         }
 
         function isAllVisited() {
