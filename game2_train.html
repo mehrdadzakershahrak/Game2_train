@@ -382,12 +382,11 @@
 
         Character.prototype.confirmLastMove = function () {
             if (this.lastMove) {
-                $('.confirmationButton').attr('disabled', null);
-                // const conf = confirmAction(this.lastMove.charAt(0).toUpperCase() + this.lastMove.slice(1));
-                // this.plan.push({ Action: this.lastMove, explain: conf, time: this.delayMove });
-                // if (!conf) {
-                //     this.confirmNewTarget();
-                // }
+                const conf = confirmAction(this.lastMove.charAt(0).toUpperCase() + this.lastMove.slice(1));
+                this.plan.push({ Action: this.lastMove, explain: conf, time: this.delayMove });
+                if (!conf) {
+                    this.confirmNewTarget();
+                }
             }
         }
 
