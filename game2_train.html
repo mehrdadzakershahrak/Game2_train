@@ -5,6 +5,17 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous">
         </script>
+</head>
+
+<body>
+    <canvas id="game" width="400" height="400"></canvas>
+    <div>
+        <label>
+            <strong>Do you think the robot is doing the right thing?</strong>
+        </label>
+        <button id='true' class='confirmationButton' disabled>Yes</button>
+        <button id='false' class='confirmationButton' disabled>No</button>
+    </div>
     <script type="text/javascript">
         // Author: Mehrdad Zakershahrak
         var ctx = null;
@@ -585,11 +596,6 @@
             $('.confirmationButton').attr('disabled', 'disabled');
         });
     </script>
-
-</head>
-
-<body>
-    <canvas id="game" width="400" height="400"></canvas>
 </body>
 
 </html>
