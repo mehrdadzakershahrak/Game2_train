@@ -355,7 +355,7 @@
                     this.plan.push({ Action: `Room-visited`, explain: true, time: 0 });
                     if (isAllVisited(gameMap)) {
                         finished = true;
-                        $.post("/game", { path: this.plan, mapId: mapId }, data => {
+                        $.post("/game", { path: this.convertPlan(), mapId: mapId }, data => {
                             sessionStorage.setItem('explainabilityUUID', data);
                             window.location.href = '/questions';
                         });
@@ -382,11 +382,12 @@
 
         Character.prototype.confirmLastMove = function () {
             if (this.lastMove) {
-                const conf = confirmAction(this.lastMove.charAt(0).toUpperCase() + this.lastMove.slice(1));
-                this.plan.push({ Action: this.lastMove, explain: conf, time: this.delayMove });
-                if (!conf) {
-                    this.confirmNewTarget();
-                }
+                $('.confirmationButton').attr('disabled', null);
+                // const conf = confirmAction(this.lastMove.charAt(0).toUpperCase() + this.lastMove.slice(1));
+                // this.plan.push({ Action: this.lastMove, explain: conf, time: this.delayMove });
+                // if (!conf) {
+                //     this.confirmNewTarget();
+                // }
             }
         }
 
@@ -552,6 +553,37 @@
             lastFrameTime = currentFrameTime;
             requestAnimationFrame(drawGame);
         }
+
+        Character.prototype.convertPlan = function() {
+            let currLoc = (m => m[0] + m[1] * 8)(maps[mapId].start.map(px => Math.floor(px / 40.0)));
+            let numObj = 0;
+            let lastRoom = 'dummy-room';
+            const newPlan = this.plan.map(p => {
+                switch(p.Action) {
+                    case 'left':
+                        return {Action: p.obstacle ? `remove-obstacle rover1 obstacle${++numObj} loc${currLoc} loc${--currLoc}` : `move rover1 loc${currLoc} loc${--currLoc}`, explain: p.explain};
+                    case 'right':
+                        return {Action: p.obstacle ? `remove-obstacle rover1 obstacle${++numObj} loc${currLoc} loc${++currLoc}` : `move rover1 loc${currLoc} loc${++currLoc}`, explain: p.explain};
+                    case 'up':
+                        return {Action: p.obstacle ? `remove-obstacle rover1 obstacle${++numObj} loc${currLoc} loc${currLoc -= 8}` : `move rover1 loc${currLoc} loc${currLoc -= 8}`, explain: p.explain};
+                    case 'down':
+                        return {Action: p.obstacle ? `remove-obstacle rover1 obstacle${++numObj} loc${currLoc} loc${currLoc += 8}` : `move rover1 loc${currLoc} loc${currLoc += 8}`, explain: p.explain};
+                    case 'Room-visited':
+                        lastRoom = rooms[currLoc];
+                        return {Action: `visit-room rover1 room${lastRoom} loc${currLoc} dummy-room`, explain: p.explain};
+                    default:
+                        let loc = (l => parseInt(l[0]) + parseInt(l[1]) * 8)(p.Action.split(/[()]/)[1].split(','));
+                        return {Action: `set-prec room${rooms[currLoc]} ${lastRoom}`, explain: p.explain};
+                }
+            });
+            console.log(newPlan);
+        }
+
+        $('.confirmationButton').click(function () {
+            player.plan.push({ Action: player.lastMove, explain: this.id == 'true', obstacle: gameMap[player.tileTo[0] + player.tileTo[1] * 8] == 3});
+            player.lastMove = null;
+            $('.confirmationButton').attr('disabled', 'disabled');
+        });
     </script>
 
 </head>
