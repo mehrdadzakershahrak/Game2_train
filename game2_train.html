@@ -371,9 +371,9 @@
                             window.location.href = '/questions';
                         });
                     }
-                    // else {
-                    //     this.confirmNewTarget();
-                    // }
+                    else {
+                        this.confirmNewTarget();
+                    }
                     return this.resetTarget();
                 }
                 if (getTileType(playerX, playerY) == 3) {
@@ -403,10 +403,10 @@
         }
 
         Character.prototype.confirmNewTarget = function () {
-            if (confirm('1. Do you want to CHANGE the robot\'s target?')) {
-                this.resetTarget();
-                this.setGoal = true;
-            }
+            // if (confirm('1. Do you want to CHANGE the robot\'s target?')) {
+            this.resetTarget();
+            this.setGoal = true;
+            // }
         }
 
         Character.prototype.getPlanSize = function () {
