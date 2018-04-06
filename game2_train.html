@@ -21,193 +21,193 @@
         var ctx = null;
         var maps = [{
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 1, 1, 1, 1, 2, 0,
-            0, 4, 4, 4, 4, 1, 1, 0,
-            0, 1, 2, 1, 4, 1, 1, 0,
-            0, 1, 1, 1, 4, 1, 1, 0,
-            0, 1, 1, 1, 1, 3, 3, 0,
-            0, 1, 2, 0, 0, 2, 1, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 1, 1, 2, 0,
+                0, 4, 4, 4, 4, 1, 1, 0,
+                0, 1, 2, 1, 4, 1, 1, 0,
+                0, 1, 1, 1, 4, 1, 1, 0,
+                0, 1, 1, 1, 1, 3, 3, 0,
+                0, 1, 2, 0, 0, 2, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [45, 45]
         },
         {
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 1, 4, 1, 1, 1, 0,
-            0, 1, 1, 4, 2, 1, 1, 0,
-            0, 0, 1, 4, 4, 1, 1, 0,
-            0, 1, 1, 1, 1, 1, 2, 0,
-            0, 1, 0, 1, 2, 4, 1, 0,
-            0, 2, 1, 3, 3, 1, 1, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 4, 1, 1, 1, 0,
+                0, 1, 1, 4, 2, 1, 1, 0,
+                0, 0, 1, 4, 4, 1, 1, 0,
+                0, 1, 1, 1, 1, 1, 2, 0,
+                0, 1, 0, 1, 2, 4, 1, 0,
+                0, 2, 1, 3, 3, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [45, 45]
         },
         {
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 1, 1, 1, 1, 1, 0,
-            0, 1, 1, 1, 4, 1, 1, 0,
-            0, 0, 3, 0, 1, 4, 4, 0,
-            0, 1, 2, 1, 1, 1, 2, 0,
-            0, 4, 4, 4, 4, 1, 1, 0,
-            0, 2, 1, 1, 3, 1, 2, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 1, 1, 1, 0,
+                0, 1, 1, 1, 4, 1, 1, 0,
+                0, 0, 3, 0, 1, 4, 4, 0,
+                0, 1, 2, 1, 1, 1, 2, 0,
+                0, 4, 4, 4, 4, 1, 1, 0,
+                0, 2, 1, 1, 3, 1, 2, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [245, 45]
         },
         {
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 1, 4, 2, 4, 1, 0,
-            0, 2, 1, 4, 1, 4, 1, 0,
-            0, 1, 1, 4, 1, 1, 1, 0,
-            0, 0, 3, 4, 0, 1, 2, 0,
-            0, 1, 1, 1, 3, 1, 1, 0,
-            0, 1, 2, 1, 0, 1, 1, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 4, 2, 4, 1, 0,
+                0, 2, 1, 4, 1, 4, 1, 0,
+                0, 1, 1, 4, 1, 1, 1, 0,
+                0, 0, 3, 4, 0, 1, 2, 0,
+                0, 1, 1, 1, 3, 1, 1, 0,
+                0, 1, 2, 1, 0, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [245, 45]
         },
         {
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 1, 2, 1, 1, 1, 0,
-            0, 2, 1, 3, 0, 1, 2, 0,
-            0, 1, 4, 4, 4, 1, 1, 0,
-            0, 1, 4, 1, 0, 0, 1, 0,
-            0, 1, 4, 2, 4, 1, 1, 0,
-            0, 1, 1, 1, 4, 1, 1, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 2, 1, 1, 1, 0,
+                0, 2, 1, 3, 0, 1, 2, 0,
+                0, 1, 4, 4, 4, 1, 1, 0,
+                0, 1, 4, 1, 0, 0, 1, 0,
+                0, 1, 4, 2, 4, 1, 1, 0,
+                0, 1, 1, 1, 4, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [245, 245]
         },
         {
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 1, 2, 1, 3, 1, 0,
-            0, 1, 1, 1, 1, 0, 1, 0,
-            0, 2, 4, 1, 3, 0, 3, 0,
-            0, 1, 1, 1, 1, 4, 1, 0,
-            0, 3, 1, 4, 4, 4, 1, 0,
-            0, 0, 2, 1, 2, 4, 1, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 2, 1, 3, 1, 0,
+                0, 1, 1, 1, 1, 0, 1, 0,
+                0, 2, 4, 1, 3, 0, 3, 0,
+                0, 1, 1, 1, 1, 4, 1, 0,
+                0, 3, 1, 4, 4, 4, 1, 0,
+                0, 0, 2, 1, 2, 4, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [245, 245]
         },
         {
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 4, 2, 1, 2, 1, 0,
-            0, 1, 4, 4, 4, 1, 1, 0,
-            0, 1, 1, 1, 3, 4, 2, 0,
-            0, 1, 0, 1, 1, 0, 1, 0,
-            0, 1, 3, 1, 3, 1, 1, 0,
-            0, 1, 1, 1, 3, 2, 1, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 4, 2, 1, 2, 1, 0,
+                0, 1, 4, 4, 4, 1, 1, 0,
+                0, 1, 1, 1, 3, 4, 2, 0,
+                0, 1, 0, 1, 1, 0, 1, 0,
+                0, 1, 3, 1, 3, 1, 1, 0,
+                0, 1, 1, 1, 3, 2, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [45, 45]
         }, {
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 1, 1, 1, 1, 1, 0,
-            0, 4, 4, 4, 1, 1, 2, 0,
-            0, 1, 2, 1, 1, 1, 1, 0,
-            0, 0, 1, 4, 0, 3, 4, 0,
-            0, 1, 3, 1, 1, 1, 1, 0,
-            0, 2, 3, 1, 1, 2, 1, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 1, 1, 1, 0,
+                0, 4, 4, 4, 1, 1, 2, 0,
+                0, 1, 2, 1, 1, 1, 1, 0,
+                0, 0, 1, 4, 0, 3, 4, 0,
+                0, 1, 3, 1, 1, 1, 1, 0,
+                0, 2, 3, 1, 1, 2, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [45, 45]
         },
         {
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 1, 1, 1, 2, 0,
-            0, 2, 3, 1, 4, 1, 1, 0,
-            0, 1, 3, 1, 4, 1, 0, 0,
-            0, 1, 4, 1, 4, 1, 0, 0,
-            0, 1, 1, 1, 4, 2, 1, 0,
-            0, 1, 4, 2, 4, 1, 1, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 1, 1, 1, 2, 0,
+                0, 2, 3, 1, 4, 1, 1, 0,
+                0, 1, 3, 1, 4, 1, 0, 0,
+                0, 1, 4, 1, 4, 1, 0, 0,
+                0, 1, 1, 1, 4, 2, 1, 0,
+                0, 1, 4, 2, 4, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [45, 245]
         },
         {
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 2, 1, 1, 1, 3, 1, 0,
-            0, 4, 4, 4, 1, 1, 2, 0,
-            0, 0, 3, 1, 1, 4, 4, 0,
-            0, 2, 1, 1, 1, 1, 1, 0,
-            0, 4, 4, 1, 4, 3, 0, 0,
-            0, 1, 1, 1, 1, 1, 2, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 2, 1, 1, 1, 3, 1, 0,
+                0, 4, 4, 4, 1, 1, 2, 0,
+                0, 0, 3, 1, 1, 4, 4, 0,
+                0, 2, 1, 1, 1, 1, 1, 0,
+                0, 4, 4, 1, 4, 3, 0, 0,
+                0, 1, 1, 1, 1, 1, 2, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [45, 245]
         },
         {
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 0, 2, 1, 1, 1, 0,
-            0, 0, 3, 3, 4, 1, 1, 0,
-            0, 2, 1, 1, 4, 1, 4, 0,
-            0, 1, 1, 1, 1, 1, 2, 0,
-            0, 1, 4, 4, 4, 1, 1, 0,
-            0, 1, 2, 0, 4, 0, 1, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 0, 2, 1, 1, 1, 0,
+                0, 0, 3, 3, 4, 1, 1, 0,
+                0, 2, 1, 1, 4, 1, 4, 0,
+                0, 1, 1, 1, 1, 1, 2, 0,
+                0, 1, 4, 4, 4, 1, 1, 0,
+                0, 1, 2, 0, 4, 0, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [245, 45]
         },
         {
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 2, 1, 2, 4, 1, 1, 0,
-            0, 1, 4, 4, 4, 1, 1, 0,
-            0, 1, 1, 1, 3, 1, 1, 0,
-            0, 4, 4, 1, 1, 1, 1, 0,
-            0, 2, 1, 1, 1, 0, 0, 0,
-            0, 1, 0, 2, 1, 0, 1, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 2, 1, 2, 4, 1, 1, 0,
+                0, 1, 4, 4, 4, 1, 1, 0,
+                0, 1, 1, 1, 3, 1, 1, 0,
+                0, 4, 4, 1, 1, 1, 1, 0,
+                0, 2, 1, 1, 1, 0, 0, 0,
+                0, 1, 0, 2, 1, 0, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [245, 45]
         },
         {
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 1, 2, 3, 1, 1, 0,
-            0, 0, 1, 1, 1, 4, 4, 0,
-            0, 0, 1, 4, 1, 1, 3, 0,
-            0, 1, 2, 4, 1, 1, 2, 0,
-            0, 4, 4, 4, 1, 0, 1, 0,
-            0, 1, 1, 3, 2, 0, 1, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 2, 3, 1, 1, 0,
+                0, 0, 1, 1, 1, 4, 4, 0,
+                0, 0, 1, 4, 1, 1, 3, 0,
+                0, 1, 2, 4, 1, 1, 2, 0,
+                0, 4, 4, 4, 1, 0, 1, 0,
+                0, 1, 1, 3, 2, 0, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [45, 245]
         },
         {
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 1, 1, 1, 1, 2, 0,
-            0, 2, 3, 1, 1, 1, 1, 0,
-            0, 3, 4, 1, 3, 4, 1, 0,
-            0, 0, 1, 1, 2, 4, 1, 0,
-            0, 0, 1, 4, 4, 4, 1, 0,
-            0, 1, 1, 4, 2, 1, 1, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 1, 1, 2, 0,
+                0, 2, 3, 1, 1, 1, 1, 0,
+                0, 3, 4, 1, 3, 4, 1, 0,
+                0, 0, 1, 1, 2, 4, 1, 0,
+                0, 0, 1, 4, 4, 4, 1, 0,
+                0, 1, 1, 4, 2, 1, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [45, 245]
         },
         {
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 4, 2, 4, 1, 2, 0,
-            0, 1, 4, 1, 4, 1, 1, 0,
-            0, 1, 1, 1, 3, 1, 1, 0,
-            0, 1, 4, 1, 0, 1, 1, 0,
-            0, 1, 4, 1, 4, 1, 1, 0,
-            0, 2, 3, 1, 0, 2, 1, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 4, 2, 4, 1, 2, 0,
+                0, 1, 4, 1, 4, 1, 1, 0,
+                0, 1, 1, 1, 3, 1, 1, 0,
+                0, 1, 4, 1, 0, 1, 1, 0,
+                0, 1, 4, 1, 4, 1, 1, 0,
+                0, 2, 3, 1, 0, 2, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [45, 45]
         },
         {
             gameMap: [
-            0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 1, 1, 1, 1, 2, 0,
-            0, 4, 1, 4, 3, 1, 1, 0,
-            0, 0, 4, 0, 4, 1, 4, 0,
-            0, 1, 2, 1, 1, 1, 0, 0,
-            0, 1, 1, 1, 1, 1, 2, 0,
-            0, 0, 3, 2, 1, 3, 1, 0,
-            0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 1, 1, 2, 0,
+                0, 4, 1, 4, 3, 1, 1, 0,
+                0, 0, 4, 0, 4, 1, 4, 0,
+                0, 1, 2, 1, 1, 1, 0, 0,
+                0, 1, 1, 1, 1, 1, 2, 0,
+                0, 0, 3, 2, 1, 3, 1, 0,
+                0, 0, 0, 0, 0, 0, 0, 0
             ], start: [45, 45]
         }];
         var tileW = 40, tileH = 40;
@@ -246,12 +246,15 @@
             left: 3
         };
 
+        var rooms = {};
+
         function setMap(id) {
             const map = maps[id];
             mapId = id;
-            player.position = map.start;
+            player.position = [...map.start];
             player.tileFrom = map.start.map(px => Math.floor(px / 40.0));
             player.tileTo = map.start.map(px => Math.floor(px / 40.0));
+            map.gameMap.map((tile, i) => [tile, { x: i % 8, y: Math.floor(i / 8) }]).filter(tile => tile[0] == 2).forEach((tile, i) => rooms[tile[1].x + tile[1].y * 6 - 6] = i + 1);
             return map.gameMap;
         }
 
@@ -279,7 +282,7 @@
             this.moving = false;
             this.plan = [];
             this.lastMove = null;
-            this.setGoal = false;
+            this.lastClick = null;
             this.stack = [];
         }
         Character.prototype.placeAt = function (x, y) {
@@ -332,7 +335,6 @@
         Character.prototype.resetTarget = function () {
             this.target = null;
             this.lastMove = null;
-            this.pending = null;
         }
 
         Character.prototype.canMoveUp = function () { return this.canMoveTo(this.tileFrom[0], this.tileFrom[1] - 1); };
@@ -371,9 +373,6 @@
                             window.location.href = '/questions';
                         });
                     }
-                    else {
-                        this.confirmNewTarget();
-                    }
                     return this.resetTarget();
                 }
                 if (getTileType(playerX, playerY) == 3) {
@@ -402,12 +401,11 @@
             }
         }
 
-        Character.prototype.confirmNewTarget = function () {
-            // if (confirm('1. Do you want to CHANGE the robot\'s target?')) {
-            this.resetTarget();
-            this.setGoal = true;
-            // }
-        }
+        // Character.prototype.confirmNewTarget = function () {
+        //     // if (confirm('1. Do you want to CHANGE the robot\'s target?')) {
+        //     this.resetTarget();
+        //     // }
+        // }
 
         Character.prototype.getPlanSize = function () {
             return this.plan.length;
@@ -472,23 +470,28 @@
             ctx.font = "bold 10pt sans-serif";
 
             $('#game').click(function (e) {
-                if (!player.target) {
-                    var offset = $('#game').offset();
-                    player.target = {
-                        x: Math.floor((e.clientX - offset.left) / 40.0),
-                        y: Math.floor((e.clientY - offset.top) / 40.0)
-                    };
-                    player.plan.push({ Action: `Human-Clicked (${player.target.x},${player.target.y})`, explain: true });
-                    let search = BFS(player.target.x + player.target.y * 8, Math.floor(player.position[0] / 40.0) + Math.floor(player.position[1] / 40.0) * 8);
-                    const path = [];
-                    while (!!search && search.parent != null) {
-                        path.push(search.move);
-                        search = search.parent;
-                    }
-                    player.setGoal = false;
-                    player.delayMove = 500;
-                    player.stack = path;
+                var offset = $('#game').offset();
+                let clicked = {
+                    x: Math.floor((e.clientX - offset.left) / 40.0),
+                    y: Math.floor((e.clientY - offset.top) / 40.0)
+                };
+                if (gameMap[clicked.x + clicked.y * 8] != 2) return;
+                if (player.target) {
+                    player.lastClick = { x: clicked.x, y: clicked.y };
+                } else {
+                    player.plan.push({ Action: `Human-Clicked (${clicked.x},${clicked.y})`, explain: true });
                 }
+
+                player.target = Object.assign({}, clicked);
+                player.plan.push({ Action: `Human-Clicked (${player.target.x},${player.target.y})`, explain: true });
+                let search = BFS(player.target.x + player.target.y * 8, Math.floor(player.position[0] / 40.0) + Math.floor(player.position[1] / 40.0) * 8);
+                const path = [];
+                while (!!search && search.parent != null) {
+                    path.push(search.move);
+                    search = search.parent;
+                }
+                player.delayMove = 500;
+                player.stack = path;
             });
             tileset = new Image();
 
@@ -520,11 +523,11 @@
 
             player.moving = player.processMovement(currentFrameTime);
             if (!player.moving) {
-                if (player.target) {
+                if (player.lastMove) {
                     player.confirmLastMove();
+                } else if (player.target) {
                     player.moveToLocation();
-                }
-                else if (!player.setGoal && !finished) {
+                } else if (!finished) {
                     var calculatedGoal = BFS_new(Math.floor(player.position[0] / 40.0) + Math.floor(player.position[1] / 40.0) * 8);
                     var path = [];
                     player.target = { x: calculatedGoal.index % 8, y: Math.floor(calculatedGoal.index / 8) };
@@ -565,34 +568,37 @@
             requestAnimationFrame(drawGame);
         }
 
-        Character.prototype.convertPlan = function() {
-            let currLoc = (m => m[0] + m[1] * 8)(maps[mapId].start.map(px => Math.floor(px / 40.0)));
+        Character.prototype.convertPlan = function () {
+            let currLoc = (m => m[0] + m[1] * 6 - 6)(maps[mapId].start.map(px => Math.floor(px / 40.0)));
             let numObj = 0;
             let lastRoom = 'dummy-room';
-            const newPlan = this.plan.map(p => {
-                switch(p.Action) {
+            return this.plan.map(p => {
+                switch (p.Action) {
                     case 'left':
-                        return {Action: p.obstacle ? `remove-obstacle rover1 obstacle${++numObj} loc${currLoc} loc${--currLoc}` : `move rover1 loc${currLoc} loc${--currLoc}`, explain: p.explain};
+                        return { Action: p.obstacle ? `remove-obstacle rover1 obstacle${++numObj} loc${currLoc} loc${--currLoc}` : `move rover1 loc${currLoc} loc${--currLoc}`, explain: p.explain };
                     case 'right':
-                        return {Action: p.obstacle ? `remove-obstacle rover1 obstacle${++numObj} loc${currLoc} loc${++currLoc}` : `move rover1 loc${currLoc} loc${++currLoc}`, explain: p.explain};
+                        return { Action: p.obstacle ? `remove-obstacle rover1 obstacle${++numObj} loc${currLoc} loc${++currLoc}` : `move rover1 loc${currLoc} loc${++currLoc}`, explain: p.explain };
                     case 'up':
-                        return {Action: p.obstacle ? `remove-obstacle rover1 obstacle${++numObj} loc${currLoc} loc${currLoc -= 8}` : `move rover1 loc${currLoc} loc${currLoc -= 8}`, explain: p.explain};
+                        return { Action: p.obstacle ? `remove-obstacle rover1 obstacle${++numObj} loc${currLoc} loc${currLoc -= 6}` : `move rover1 loc${currLoc} loc${currLoc -= 6}`, explain: p.explain };
                     case 'down':
-                        return {Action: p.obstacle ? `remove-obstacle rover1 obstacle${++numObj} loc${currLoc} loc${currLoc += 8}` : `move rover1 loc${currLoc} loc${currLoc += 8}`, explain: p.explain};
+                        return { Action: p.obstacle ? `remove-obstacle rover1 obstacle${++numObj} loc${currLoc} loc${currLoc += 6}` : `move rover1 loc${currLoc} loc${currLoc += 6}`, explain: p.explain };
                     case 'Room-visited':
                         lastRoom = rooms[currLoc];
-                        return {Action: `visit-room rover1 room${lastRoom} loc${currLoc} dummy-room`, explain: p.explain};
+                        return { Action: `visit-room rover1 room${lastRoom} loc${currLoc}`, explain: p.explain };
                     default:
-                        let loc = (l => parseInt(l[0]) + parseInt(l[1]) * 8)(p.Action.split(/[()]/)[1].split(','));
-                        return {Action: `set-prec room${rooms[currLoc]} ${lastRoom}`, explain: p.explain};
+                        let loc = (l => parseInt(l[0]) + parseInt(l[1]) * 6 - 6)(p.Action.split(/[()]/)[1].split(','));
+                        return { Action: `set-to-visit room${rooms[loc]} ${lastRoom == 'dummy-room' ? lastRoom : `room${lastRoom}`}`, explain: p.explain };
                 }
             });
-            console.log(newPlan);
         }
 
         $('.confirmationButton').click(function () {
-            player.plan.push({ Action: player.lastMove, explain: this.id == 'true', obstacle: gameMap[player.tileTo[0] + player.tileTo[1] * 8] == 3});
+            player.plan.push({ Action: player.lastMove, explain: this.id == 'true', obstacle: gameMap[player.tileTo[0] + player.tileTo[1] * 8] == 3 });
             player.lastMove = null;
+            if (player.lastClick) {
+                player.plan.push({ Action: `Human-Clicked (${player.lastClick.x},${player.lastClick.y})`, explain: true });
+                player.lastClick = null;
+            }
             $('.confirmationButton').attr('disabled', 'disabled');
         });
     </script>
