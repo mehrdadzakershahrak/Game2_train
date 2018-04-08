@@ -14,21 +14,21 @@ let db;
 
 const PORT = process.env.PORT || 3000;
 
-// mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
-//     if (err) {
-//         console.log(err);
-//         process.exit(1);
-//     }
+mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
+    if (err) {
+        console.log(err);
+        process.exit(1);
+    }
 
-//     // Save database object from the callback for reuse.
-//     db = client.db();
-//     console.log("Database connection ready");
+    // Save database object from the callback for reuse.
+    db = client.db();
+    console.log("Database connection ready");
 
     // Initialize the app.
     app.listen(PORT, () => {
         console.log('listening');
     });
-// });
+});
 
 const users = {};
 
@@ -57,10 +57,10 @@ app.post('/questions', (req, res) => {
         console.log(obj);
         delete users[req.body.id];
 
-        // db.collection(GAMETYPE).insertOne(obj, (err, doc) => {
-        //     if (err) throw err;
-        //     res.send('Submission received');
-        // });
+        db.collection(GAMETYPE).insertOne(obj, (err, doc) => {
+            if (err) throw err;
+            res.send('Submission received');
+        });
     }
 
 });
